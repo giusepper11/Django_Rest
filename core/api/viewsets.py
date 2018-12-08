@@ -18,16 +18,20 @@ class PontoTuristicoViewSet(ModelViewSet):
         # tambem adicionar o model no base_name na rota
         return PontoTuristico.objects.filter(aprovado=True)
 
+    def create(self, request, *args, **kwargs):
+        # mantendo comportamento padrao
+        return super(PontoTuristicoViewSet, self).create(request, *args, **kwargs)
+
     def destroy(self, request, *args, **kwargs):
         # sobescrever a funcao de delete
         pass
 
-    #action para detail
+    # action para detail
     @action(methods=['get'], detail=True)
     def denunciar(self, request, pk=None, **kwargs):
-        return Response({'denunciado':pk})
+        return Response({'denunciado': pk})
 
-    #action para endpoint
+    # action para endpoint
     @action(methods=['get'], detail=False)
     def test(self, request):
         pass
