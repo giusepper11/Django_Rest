@@ -20,3 +20,7 @@ class PontoTuristico(models.Model):
 
     def __str__(self):
         return self.nome
+
+    @property
+    def descricao_completa2(self):
+        return '{} - {}'.format(self.nome, self.descricao)
