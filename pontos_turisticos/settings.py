@@ -26,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['pontosturisticoss.herokuapp.com', '127.0.0.1:8000']
+ALLOWED_HOSTS = ['pontosturisticoss.herokuapp.com', '127.0.0.1']
 
 # Application definition
 
@@ -127,7 +127,9 @@ MEDIA_ROOT = 'imagens'
 MEDIA_URL = '/media/'
 
 REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100
 }
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

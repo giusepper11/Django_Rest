@@ -44,3 +44,18 @@ class PontoTuristicoViewSet(ModelViewSet):
     @action(methods=['get'], detail=False)
     def test(self, request):
         pass
+
+    @action(methods=['post'], detail=True)
+    def associa_atracoes(self, request, pk):
+        atracoes = request.data['ids']
+        ponto = PontoTuristico.objects.get(id=pk)
+
+        ponto.atracoes.set(atracoes)
+
+        ponto.save()
+
+        return Response({'criado':ponto})
+
+        # for atracao in atracoes:
+        #     ponto.atracoes.add
+
